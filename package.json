@@ -1,0 +1,24 @@
+{
+  "name": "logging-with-winston",
+  "version": "1.0.0",
+  "description": "Nodejs app logging solution using Winston library (PoC)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mihailgaberov/winston.git"
+  },
+  "keywords": [
+    "nodejs",
+    "logging",
+    "winston"
+  ],
+  "author": "Mihail Gaberov <mihail.gaberov@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mihailgaberov/winston/issues"
+  },
+  "homepage": "https://github.com/mihailgaberov/winston#readme"
+}
