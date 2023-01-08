@@ -13,11 +13,16 @@
 // logger.warn('Warning message');
 
 const winston = require('winston');
-const { combine, timestamp, json } = winston.format;
+const { combine, timestamp, json } = winston.format
+
 
 const logger = winston.createLogger({
   level: process.env.LOG_LEVEL || 'info',
-  format: combine(timestamp(), json()),
+  format: combine(
+      timestamp({
+        format: 'YYYY-MM-DD hh:mm:ss.SSS A', // 2022-01-25 03:23:10.350 PM
+      })
+      , json()),
   transports: [new winston.transports.Console()],
 });
 
