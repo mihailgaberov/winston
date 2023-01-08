@@ -119,6 +119,7 @@ fileRotateTransport.on('logRemoved', (removedFilename) => {
 logger.info('Info message');
 logger.error('Error message');
 logger.warn('Warning message');*/
+/*
 const winston = require('winston')
 
 const logger = winston.createLogger({
@@ -140,8 +141,20 @@ childLogger.info('File uploaded successfully', {
 
 
 
-//
-// logger.info('Info message');
-// logger.error('Error message');
+
+logger.info('Info message');
+logger.error('Error message');
+*/
+
+const winston = require("winston");
+const { combine, timestamp, json } = winston.format;
+const logger = winston.createLogger({
+  level: "info",
+  format: combine(timestamp(), json()),
+  transports: [new winston.transports.Console()],
+});
+
+logger.error(new Error("an error"));
+
 
 
