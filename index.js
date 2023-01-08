@@ -39,7 +39,7 @@ const logger = winston.createLogger({
   format: combine(
       colorize({ all: true }),
       timestamp({
-        format: 'YYYY-MM-DD hh:mm:ss A',
+        format: 'YYYY-MM-DD hh:mm:ss.SSS A',
       }),
       align(),
       printf((info) => `[${info.timestamp}] ${info.level}: ${info.message}`)
@@ -50,4 +50,3 @@ const logger = winston.createLogger({
 logger.info('Info message');
 logger.error('Error message');
 logger.warn('Warning message');
-
