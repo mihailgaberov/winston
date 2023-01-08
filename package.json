@@ -22,7 +22,10 @@
   },
   "homepage": "https://github.com/mihailgaberov/winston#readme",
   "dependencies": {
+    "@logtail/node": "^0.1.14",
+    "@logtail/winston": "^0.1.14",
     "axios": "^1.2.2",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "morgan": "^1.10.0",
     "winston": "^3.8.2",

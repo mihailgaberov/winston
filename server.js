@@ -2,6 +2,12 @@ const winston = require('winston');
 const express = require('express');
 const morgan = require('morgan');
 const axios = require('axios');
+const { Logtail } = require('@logtail/node');
+const { LogtailTransport } = require('@logtail/winston');
+
+require('dotenv').config()
+
+const logtail = new Logtail(process.env.LOGTAIL_TOKEN);
 
 const app = express();
 
@@ -15,7 +21,7 @@ const logger = winston.createLogger({
       }),
       json()
   ),
-  transports: [new winston.transports.Console()],
+  transports: [new winston.transports.Console(), new LogtailTransport(logtail)],
 });
 
 const morganMiddleware = morgan(
