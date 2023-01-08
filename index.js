@@ -62,8 +62,14 @@ const logger = winston.createLogger({
     new winston.transports.File({
       filename: 'combined.log',
     }),
+    new winston.transports.File({
+      filename: 'app-error.log',
+      level: 'error',
+    }),
   ],
 });
+
+
 
 logger.info('Info message');
 logger.error('Error message');
