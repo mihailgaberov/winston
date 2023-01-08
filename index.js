@@ -132,8 +132,13 @@ const logger = winston.createLogger({
 
 const childLogger = logger.child({ requestId: 'f9ed4675f1c53513c61a3b3b4e25b4c0' });
 
-childLogger.info('Info message');
-childLogger.info('Error message');
+childLogger.info('File uploaded successfully', {
+  file: 'something.png',
+  type: 'image/png',
+  userId: 'jdn33d8h2',
+});
+
+
 
 //
 // logger.info('Info message');
