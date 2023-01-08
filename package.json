@@ -4,7 +4,7 @@
   "description": "Nodejs app logging solution using Winston library (PoC)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/mihailgaberov/winston/issues"
   },
-  "homepage": "https://github.com/mihailgaberov/winston#readme"
+  "homepage": "https://github.com/mihailgaberov/winston#readme",
+  "dependencies": {
+    "winston": "^3.8.2"
+  }
 }
