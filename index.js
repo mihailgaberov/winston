@@ -170,8 +170,15 @@ const logger = winston.createLogger({
     new winston.transports.File({ filename: 'rejections.log' }),
   ],
 });
+// start a timer
+const profiler = logger.startTimer();
 
-throw new Error('An uncaught error');
+setTimeout(() => {
+  // End the timer and log the duration
+  profiler.done({ message: 'Logging message' });
+}, 1000);
+
+
 
 
 
