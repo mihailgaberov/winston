@@ -30,10 +30,20 @@ const logger = winston.createLogger({
 logger.info('Info message')
 
 */
-/*
 
 const winston = require('winston');
+require('winston-mongodb');
 const { combine, timestamp, printf, colorize, align } = winston.format;
+
+const options = {
+  db: 'mongodb://127.0.0.1:3001/?readPreference=primary&appname=MongoDB%20Compass&ssl=false', // MongoDB connection uri, pre-connected MongoClient object or promise which resolves to a pre-connected MongoClient object.
+  dbName: 'winston-logs', // The database name to connect to, defaults to DB name based on connection URI if not provided, ignored if using a pre-connected mongoose connection.
+  label: '[BAH]', // Label stored with entry object if defined.
+  tryReconnect: true ,// Will try to reconnect to the database in case of fail during initialization. Works only if db is a string. Defaults to false.
+  options: {
+    useUnifiedTopology: true
+  }
+};
 
 const logger = winston.createLogger({
   level: process.env.LOG_LEVEL || 'info',
@@ -45,12 +55,13 @@ const logger = winston.createLogger({
       align(),
       printf((info) => `[${info.timestamp}] ${info.level}: ${info.message}`)
   ),
-  transports: [new winston.transports.Console()],
+  transports: [new winston.transports.Console(), new winston.transports.MongoDB(options)],
 });
 
 logger.info('Info message');
 logger.error('Error message');
-logger.warn('Warning message');*/
+logger.warn('Warning message');
+
 /*
 const winston = require('winston');
 const { combine, timestamp, json } = winston.format;
@@ -180,7 +191,7 @@ setTimeout(() => {
 }, 1000);
 */
 
-require('./loggers.js');
+/*require('./loggers.js');
 
 const winston = require('winston');
 
@@ -188,7 +199,7 @@ const serviceALogger = winston.loggers.get('serviceALogger');
 const serviceBLogger = winston.loggers.get('serviceBLogger');
 
 serviceALogger.error('logging to a file');
-serviceBLogger.warn('logging to the console');
+serviceBLogger.warn('logging to the console');*/
 
 
 
