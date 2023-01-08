@@ -51,7 +51,6 @@ const logger = winston.createLogger({
 logger.info('Info message');
 logger.error('Error message');
 logger.warn('Warning message');*/
-
 /*
 const winston = require('winston');
 const { combine, timestamp, json } = winston.format;
@@ -145,16 +144,37 @@ childLogger.info('File uploaded successfully', {
 logger.info('Info message');
 logger.error('Error message');
 */
-
+/*
 const winston = require("winston");
-const { combine, timestamp, json } = winston.format;
+const { combine, timestamp, json, errors } = winston.format;
 const logger = winston.createLogger({
   level: "info",
-  format: combine(timestamp(), json()),
+  format: combine(errors({ stack: true }), timestamp(), json()),
   transports: [new winston.transports.Console()],
 });
 
 logger.error(new Error("an error"));
+
+
+*/
+
+const winston = require('winston');
+const logger = winston.createLogger({
+  level: process.env.LOG_LEVEL || 'info',
+  format: winston.format.json(),
+  transports: [new winston.transports.Console()],
+  exceptionHandlers: [
+    new winston.transports.File({ filename: 'exception.log' }),
+  ],
+  rejectionHandlers: [
+    new winston.transports.File({ filename: 'rejections.log' }),
+  ],
+});
+
+throw new Error('An uncaught error');
+
+
+
 
 
 
