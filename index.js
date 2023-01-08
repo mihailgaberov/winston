@@ -120,6 +120,7 @@ logger.info('Info message');
 logger.error('Error message');
 logger.warn('Warning message');*/
 const winston = require('winston')
+
 const logger = winston.createLogger({
   level: process.env.LOG_LEVEL || 'info',
   defaultMeta: {
@@ -129,7 +130,13 @@ const logger = winston.createLogger({
   transports: [new winston.transports.Console()],
 });
 
-logger.info('Info message');
-logger.error('Error message');
+const childLogger = logger.child({ requestId: 'f9ed4675f1c53513c61a3b3b4e25b4c0' });
+
+childLogger.info('Info message');
+childLogger.info('Error message');
+
+//
+// logger.info('Info message');
+// logger.error('Error message');
 
 
