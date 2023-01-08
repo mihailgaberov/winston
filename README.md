@@ -1,2 +1,2 @@
-# winston
-Nodejs app logging solution using Winston library (PoC)
+# Logging with Winston
+Nodejs app logging solution using [Winston](https://github.com/mihailgaberov/winston.git) library (PoC)
