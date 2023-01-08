@@ -52,6 +52,7 @@ logger.info('Info message');
 logger.error('Error message');
 logger.warn('Warning message');*/
 
+/*
 const winston = require('winston');
 const { combine, timestamp, json } = winston.format;
 
@@ -74,5 +75,61 @@ const logger = winston.createLogger({
 logger.info('Info message');
 logger.error('Error message');
 logger.warn('Warning message');
+
+
+*/
+/*
+
+const winston = require('winston');
+require('winston-daily-rotate-file');
+
+const { combine, timestamp, json } = winston.format;
+
+const fileRotateTransport = new winston.transports.DailyRotateFile({
+  filename: 'combined-%DATE%.log',
+  datePattern: 'YYYY-MM-DD',
+  maxFiles: '14d',
+});
+
+const logger = winston.createLogger({
+  level: process.env.LOG_LEVEL || 'info',
+  format: combine(timestamp(), json()),
+  transports: [fileRotateTransport],
+});
+
+// fired when a log file is created
+fileRotateTransport.on('new', (filename) => {
+  console.log("a new log file is created");
+});
+// fired when a log file is rotated
+fileRotateTransport.on('rotate', (oldFilename, newFilename) => {
+  console.log("a new log file is rotated");
+});
+// fired when a log file is archived
+fileRotateTransport.on('archive', (zipFilename) => {
+  console.log("a new log file is archived");
+});
+// fired when a log file is deleted
+fileRotateTransport.on('logRemoved', (removedFilename) => {
+  console.log("a new log file is removed");
+});
+
+
+
+logger.info('Info message');
+logger.error('Error message');
+logger.warn('Warning message');*/
+const winston = require('winston')
+const logger = winston.createLogger({
+  level: process.env.LOG_LEVEL || 'info',
+  defaultMeta: {
+    service: 'admin-service',
+  },
+  format: winston.format.json(),
+  transports: [new winston.transports.Console()],
+});
+
+logger.info('Info message');
+logger.error('Error message');
 
 
