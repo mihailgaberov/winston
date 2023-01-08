@@ -157,6 +157,7 @@ logger.error(new Error("an error"));
 
 
 */
+/*
 
 const winston = require('winston');
 const logger = winston.createLogger({
@@ -177,7 +178,17 @@ setTimeout(() => {
   // End the timer and log the duration
   profiler.done({ message: 'Logging message' });
 }, 1000);
+*/
 
+require('./loggers.js');
+
+const winston = require('winston');
+
+const serviceALogger = winston.loggers.get('serviceALogger');
+const serviceBLogger = winston.loggers.get('serviceBLogger');
+
+serviceALogger.error('logging to a file');
+serviceBLogger.warn('logging to the console');
 
 
 
